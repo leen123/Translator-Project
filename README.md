@@ -66,5 +66,5 @@ We would like to acknowledge the ANTLR development community for their invaluabl
 
 ## Screenshots
 
-![Screenshot 1](/screens/code by new language.png)
-![Screenshot 2](/screens/page 0 generate.png)
+![code by new language](/screens/code by new language.png)
+![page 0 generate](/screens/page 0 generate.png)
