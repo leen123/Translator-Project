@@ -1,0 +1,51 @@
+<html>
+	<body>
+
+		<form style="width:100%; display:flex;
+        	  align-items:center; justify-content:center;
+        flex-direction:column;" action="c2.php" method="post">
+			<input  style="align-self:start;"  style="align-self:end;" type="text" name="name" placeholder="name" />
+			<br/>
+			<input  style="align-self:start;"  style="align-self:end;" type="email" name="email" placeholder="email" />
+			<br/>
+			<input type="password" name="password" placeholder="password" />
+			<br/>
+			<select name="country"id="country">
+				<option value="syria">syria</option>
+				<option value="usa">usa</option>
+				<option value="uae">uae</option>
+				<option value="ksa">ksa</option>
+			</select>
+			<br/>
+			<p>married</p>
+				<input type="checkbox" id="yes" name="married" value="yes">
+					<label for="yes">yes</label>
+				<input type="checkbox" id="no" name="married" value="no">
+					<label for="no">no</label>
+			<br/>
+			<p>gender</p>
+				<input type="radio"id="male" name="gender" value="male">
+					<label for="male">male</label>
+				<input type="radio"id="female" name="gender" value="female">
+					<label for="female">female</label>
+			<br/>
+			<input type="number" name="age" placeholder="age" />
+			<br/>
+			<p>number_1A</p>
+				<input type="radio"id="4343" name="number_1A" value="4343">
+					<label for="4343">4343</label>
+				<input type="radio"id="4242" name="number_1A" value="4242">
+					<label for="4242">4242</label>
+			<br/>
+			<input type="file" name="profile_image" />
+			<br/>
+		<button type=“submit” >submit your form</button>
+		<form>
+		<h1 >HelloWorld</h1>
+		<br/>
+		<img src="c:\\image.jpg" alt="image"/>
+		<br/>
+
+	</body>
+</html>
+

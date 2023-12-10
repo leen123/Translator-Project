@@ -1,0 +1,71 @@
+parser grammar HTMLPHPPARSER;
+
+options { tokenVocab=HTMLPHPLEXER; }
+
+app : define_page+  define_controller+;
+
+define_page : PAGE_ATTR PAGE_ID (EXTENDES PAGE_ID)? OPEN_CURLY_BRACKETS IO_NEW_LINE body* submit IO_NEW_LINE CLOSED_CURLY_BRACKETS;
+define_controller : CONTROLLER_ATTR ID CONTROLES_ATTR ID  controller;
+submit : SUBMIT location;
+body : (input  | output) IO_NEW_LINE?;
+controller : CONTROLLER_OPEN_BRACKETS controller_body* CLOSE_BRACKETS CONTROLLER_SIMICOLON;
+
+location : LOCATION LOCATION_OPEN_ARCH (CENTER | LEFT_UPPER | RIGHT_UPPER | LEFT_DOWN | RIGHT_DOWN)LOCATION_CLOSE_ARCH;
+
+controller_body : define_array |if_statement | for_loop | function |goto_page;
+if_statement : IF IF_OPEN_ARCH exepression IF_CLOSE_ARCH IF_OPEN_BRACKETS controller_body* CLOSE_BRACKETS else_if* else_end? ;
+else_if : ELSE_IF IF_OPEN_ARCH exepression IF_CLOSE_ARCH  IF_OPEN_BRACKETS controller_body*  CLOSE_BRACKETS;
+else_end : ELSE IF_OPEN_BRACKETS controller_body* CLOSE_BRACKETS;
+
+define_array : DEF ARRAY ARRAY_NAME DEFIEND_ARRAY_OPEN_BRACKETS (array_values ARRAY_VALUES_COMMA?)+ DEFIEND_ARRAY_CLOSE_BRACKETS;
+
+array_values : ARRAY_VAR_VALUES | ARRAY_INT_VALUES | ARRAY_STRING_VALUES;
+
+for_loop : FOR FOR_MODE_OPEN_ARCH FOR_EXPRESSION_VAR IN RANGE FOR_RANGE_OPEN_ARCH
+    var_or_number COMMA_EXPRESSION_COMMA var_or_number FOR_RANGE_CLOSE_ARCH FOR_MODE_CLOSE_ARCH
+    FOR_MODE_OPEN_BRACKETS controller_body* CLOSE_BRACKETS;
+var_or_number : (FOR_EXPRESSION_VAR array_bounds*) | FOR_EXPRESSION_NUMBER;
+
+function :  (add_function | to_lower_function | to_upper_function) ;
+add_function : ADD_FUNC ADD_VAR array_bounds* ADD_FUNCTION_COMMA ADD_VALUE ADD_CLOSE_BRACKETS;
+to_lower_function:TO_LOWER_FUNC TO_LOWER_FUNCTION_VAR array_bounds*  TO_LOWER_FUNCTION_CLOSE_BRACKETS;
+to_upper_function : TO_UPPER_FUNC TO_UPPER_FUNCTION_VAR array_bounds* TO_UPPER_FUNCTION_CLOSE_BRACKETS;
+goto_page : GOTO GOTO_OPEN_BRACKETS GOTO_PAGE_ID (GOTO_COMMA GOTO_VAR)* GOTO_CLOSE_BRACKETS;
+
+
+
+exepression :   left_expression opertator  right_expression (exepression_operator exepression)?;
+left_expression : (EXPRESSION_NUMBER | EXPRESSION_STRING | exepression_var);
+right_expression : (EXPRESSION_NUMBER | EXPRESSION_STRING | exepression_var);
+exepression_var : EXPRESSION_VAR array_bounds*;
+exepression_operator : AND_AND_OPERATOR | OR_OPERATOR;
+opertator : BIGGER_OPERATOR | SMALLER_OPERATOR | BIGGER_AND_EQUALS_OPERATOR |SMALLER_AND_EQUALS_OPERATOR | EQUALS_OPERATOR;
+array_bounds : (EXPRESSION_ARRAY_OPEN_BRACKETS | FOR_EXPRESSION_ARRAY_VAR_OPEN_BREACKETS | ADD_VAR_ARRAY_OPEN_BRACKETS | TO_LOWER_ARRAY_OPEN_BRACKETS |TO_UPPER_ARRAY_OPEN_BRACKETS)
+    (ARRAY_INDEX_NUMER | ARRAY_INDEX_VAR) EXPRESSION_ARRAY_CLOSE_BRACKETS*;
+
+input : IN_ATTR INPUT_COLON (field | multiple_choice_field | file) INPUT_SIMICOLON REQUIRED? location?;
+
+output : OUT_ATT OUTPUT_COLON (outputText | image) OUTPUT_SIMICOLON location?;
+
+field : FIELD INPUT_FIELD_OPEN_ARCH input_field_type INPUT_COMMA INPUT_FIELD INPUT_FIELD_CLOSE_ARCH;
+input_field_type : TYPE TYPE_EQUALS (EMAIL | PASSWORD | URL | NUMBER | TEXT);
+file : FILE INPUT_CHOCIE_OPEN_ARCH CHOICE_NAME INPUT_CHOICE_CLOSE__ARCH;
+
+image : OUT_IMAGE OUTPUT_IMAGE_OPEN_PARA image_path OUTPUT_IMAGE_CLOSE_PARA;
+
+multiple_choice_field : checkbox | dropdown | radio ;
+
+image_path : IMAGE_PATH_DOUBLE_QUOTATIONS DOUBLE_QUOT_INPUT_STRING CLOSED_DOUBLE_QUOTATION;
+input_text : string | integer;
+string : double_quotations_string | single_quotations_string;
+double_quotations_string : INPUT_DOUBLE_QUOTATION DOUBLE_QUOT_INPUT_STRING CLOSED_DOUBLE_QUOTATION;
+single_quotations_string : INPUT_SINGLE_QUOTATION SINGLE_QUOT_INPUT_STRING CLOSED_SINGLE_QUOTATION;
+
+
+integer : INPUT_NUMBER;
+checkbox : CHECKBOX INPUT_CHOCIE_OPEN_ARCH CHOICE_NAME INPUT_CHOICE_COMMA
+ (input_text (INPUT_CHOICE_COMMA input_text)*) INPUT_CHOICE_CLOSE__ARCH ;
+dropdown : DROPDOWN INPUT_CHOCIE_OPEN_ARCH CHOICE_NAME INPUT_CHOICE_COMMA (input_text (INPUT_CHOICE_COMMA input_text)*) INPUT_CHOICE_CLOSE__ARCH;
+radio : RADIO INPUT_CHOCIE_OPEN_ARCH CHOICE_NAME INPUT_CHOICE_COMMA (input_text INPUT_CHOICE_COMMA input_text) INPUT_CHOICE_CLOSE__ARCH;
+outputText : OUT_TEXT OUTPUT_PARAM_OPEN_PARA OUTPUT_TEXT OUTPUT_PARAM_CLOSE_PARA;
+

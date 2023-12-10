@@ -1,0 +1,142 @@
+name                        dataType                 scope                   path
+p0                        pageId                    global                  [p0]
+p1                        pageId                    global                  [p1]
+p2                        pageId                    global                  [p2]
+c0                              controllerId              global                  [c0]
+c1                              controllerId              global                  [c1]
+c2                              controllerId              global                  [c2]
+	name                        dataType                 scope                   path
+	password                 field                   page                              [p0, password]
+	SignUp                  text                    page                            [p0, SignUp]
+	name                     field                   page                          [p0, name]
+	name2                    field                   page                           [p0, name2]
+	email                    field                   page                           [p0, email]
+	age                      field                   page                         [p0, age]
+		name                        dataType                 scope                   path
+		password                     fieldType                field                                       [p0, password, password]
+		name                        dataType                 scope                   path
+		text                         fieldType                field                               [p0, name, text]
+		name                        dataType                 scope                   path
+		text                         fieldType                field                                [p0, name2, text]
+		name                        dataType                 scope                   path
+		email                        fieldType                field                                 [p0, email, email]
+		name                        dataType                 scope                   path
+		number                       fieldType                field                                [p0, age, number]
+	name                        dataType                 scope                   path
+	country                     dropdown                page                             [p1, country]
+	SignUp                  text                    page                            [p1, SignUp]
+	gender                   radio                   page                            [p1, gender]
+	married                     dropdown                page                             [p1, married]
+		name                        dataType                 scope                   path
+		usa                       string                      dropdown                              [p1, country, usa]
+		uae                       string                      dropdown                              [p1, country, uae]
+		ksa                       string                      dropdown                              [p1, country, ksa]
+		syria                     string                      dropdown                                [p1, country, syria]
+		name                        dataType                 scope                   path
+		female                    string                   radio                                   [p1, gender, female]
+		male                      string                   radio                                 [p1, gender, male]
+		name                        dataType                 scope                   path
+		no                        string                      checkbox                             [p1, married, no]
+		yes                       string                      checkbox                              [p1, married, yes]
+	name                        dataType                 scope                   path
+	country                     dropdown                page                             [p2, country]
+	number_1A                radio                   page                               [p2, number_1A]
+	c:\\image.jpg            image                   page                                   [p2, c:\\image.jpg]
+	p2                                extendedPageId          page                        [p2, p0]
+	password                 field                   page                              [p2, password]
+	profile_image           file                    page                                   [p2, profile_image]
+	gender                   radio                   page                            [p2, gender]
+	name                     field                   page                          [p2, name]
+	married                     dropdown                page                             [p2, married]
+	email                    field                   page                           [p2, email]
+	age                      field                   page                         [p2, age]
+	HelloWorld              text                    page                                [p2, HelloWorld]
+		name                        dataType                 scope                   path
+		usa                       string                      dropdown                              [p2, country, usa]
+		uae                       string                      dropdown                              [p2, country, uae]
+		ksa                       string                      dropdown                              [p2, country, ksa]
+		syria                     string                      dropdown                                [p2, country, syria]
+		name                        dataType                 scope                   path
+		4242                       integer                  radio                                    [p2, number_1A, 4242]
+		4343                       integer                  radio                                    [p2, number_1A, 4343]
+		name                        dataType                 scope                   path
+		password                     fieldType                field                                       [p2, password, password]
+		name                        dataType                 scope                   path
+		female                    string                   radio                                   [p2, gender, female]
+		male                      string                   radio                                 [p2, gender, male]
+		name                        dataType                 scope                   path
+		text                         fieldType                field                               [p2, name, text]
+		name                        dataType                 scope                   path
+		no                        string                      checkbox                             [p2, married, no]
+		yes                       string                      checkbox                              [p2, married, yes]
+		name                        dataType                 scope                   path
+		email                        fieldType                field                                 [p2, email, email]
+		name                        dataType                 scope                   path
+		number                       fieldType                field                                [p2, age, number]
+	name                        dataType                 scope                   path
+	p0                                  controllerPageId              controller                  [c0, p0]
+	if1                   if                            controller                   [c0, if1]
+		name                        dataType                 scope                   path
+		p1                            gotoPageId            if                               [c0, if1, p1]
+		else1                   else                          controller                          [c0, if1, else1]
+		>                           operator              if                              [c0, if1, >]
+			name                        dataType                 scope                   path
+			p0                            gotoPageId              else                                    [c0, if1, else1, p0]
+			name                        dataType                 scope                   path
+			17                         integer                     operator                            [c0, if1, >, 17]
+			age                    var                         operator                             [c0, if1, >, age]
+	name                        dataType                 scope                   path
+	p1                                  controllerPageId              controller                  [c1, p1]
+	numbers1                     arrayName                     controller                        [c1, numbers1]
+	for1                       forLoop                       controller                    [c1, for1]
+		name                        dataType                 scope                   path
+		44                         integer                  array                                 [c1, numbers1, 44]
+		1                          integer                  array                                [c1, numbers1, 1]
+		3                          integer                  array                                [c1, numbers1, 3]
+		5                          integer                  array                                [c1, numbers1, 5]
+		6                          integer                  array                                [c1, numbers1, 6]
+		7                          integer                  array                                [c1, numbers1, 7]
+		name                        dataType                 scope                   path
+		0                          integer                         startForLoop                     [c1, for1, 0]
+		5                          integer                       endForLoop                       [c1, for1, 5]
+		if1                   if                         forLoop                            [c1, for1, if1]
+		i                          forLoop                       controller                       [c1, for1, i]
+			name                        dataType                 scope                   path
+			==                          operator              if                                     [c1, for1, if1, ==]
+			p0                            gotoPageId            if                                     [c1, for1, if1, p0]
+			else1                   else                       forLoop                                   [c1, for1, if1, else1]
+				name                        dataType                 scope                   path
+				6                          integer                     operator                                  [c1, for1, if1, ==, 6]
+				numbers1               var                         operator                                         [c1, for1, if1, ==, numbers1]
+					name                        dataType                 scope                   path
+					i                      var                               arrayDimension                                      [c1, for1, if1, ==, numbers1, i]
+				name                        dataType                 scope                   path
+				p2                            gotoPageId              else                                          [c1, for1, if1, else1, p2]
+	name                        dataType                 scope                   path
+	p2                                  controllerPageId              controller                  [c2, p2]
+	values                       arrayName                     controller                      [c2, values]
+	numbers                      arrayName                     controller                       [c2, numbers]
+	for1                       forLoop                       controller                    [c2, for1]
+		name                        dataType                 scope                   path
+		country                var                      array                                    [c2, values, country]
+		number_1A              var                      array                                      [c2, values, number_1A]
+		password               var                      array                                     [c2, values, password]
+		profile_image          var                      array                                          [c2, values, profile_image]
+		gender                 var                      array                                   [c2, values, gender]
+		5                          integer                  array                              [c2, values, 5]
+		name                   var                      array                                 [c2, values, name]
+		married                var                      array                                    [c2, values, married]
+		email                  var                      array                                  [c2, values, email]
+		age                    var                      array                                [c2, values, age]
+		name                        dataType                 scope                   path
+		44                         integer                  array                                [c2, numbers, 44]
+		1                          integer                  array                               [c2, numbers, 1]
+		3                          integer                  array                               [c2, numbers, 3]
+		5                          integer                  array                               [c2, numbers, 5]
+		6                          integer                  array                               [c2, numbers, 6]
+		7                          integer                  array                               [c2, numbers, 7]
+		name                        dataType                 scope                   path
+		5                          integer                       endForLoop                       [c2, for1, 5]
+		6                          integer                         startForLoop                     [c2, for1, 6]
+		i                          forLoop                       controller                       [c2, for1, i]
+

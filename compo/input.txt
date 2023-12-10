@@ -1,0 +1,72 @@
+page p0 {
+in : field(type=text,name);
+in : field(type=text,name2);
+in : field(type=email,email);
+in : field(type=password,password);
+in : field(type=number,age);
+out: text(SignUp);
+submit location(center)
+}
+page p1 {
+in : dropdown(country,"syria","usa",'uae','ksa');
+in : checkbox(married,"yes","no");
+in : radio(gender,"male","female");
+out: text(SignUp);
+submit location(center)
+}
+page p2 extends p0 {
+in : field(type=text,name);location(left_upper)
+in : field(type=email,email); location(left_upper)
+in : field(type=password,password);
+in : dropdown(country,"syria","usa",'uae','ksa');
+in : checkbox(married,"yes","no");
+in : radio(gender,"male","female");
+in : field(type=number,age);
+in : radio(number_1A,4343,4242);
+in : file(profile_image);
+out: text(HelloWorld);
+out: image("c:\\image.jpg");
+submit location(center)
+}
+
+
+controller c0 controls p0{
+if( age>17){
+goto (p1)
+}else{
+goto (p0)
+}
+};
+
+controller c1 controls p1{
+def array numbers1(1,3,44,5,6,7)
+for(i in range(0,5)){
+    if(numbers1[i]==6){
+    goto (p0)
+    }else{
+    goto (p2)
+    }
+}
+};
+controller c2 controls p2{
+def array values(name,email,password,country,married,gender,age,number_1A,profile_image,5)
+def array numbers(1,3,44,5,6,7)
+
+for(i in range(0,5)){
+     toUpper(values[i])
+    if(1 == "syria"){
+        goto (p0,name,email)
+    }else if(values[i] == 1){
+        toUpper(values[i][8])
+        goto (p0,email)
+    }else if(values[i] == 5){
+        for(j in range(0,values[i])){
+        add(numbers[j],1)
+    }
+    }
+    else {
+        toLower(values[i])
+    }
+   goto (p0,email)
+   }
+};
